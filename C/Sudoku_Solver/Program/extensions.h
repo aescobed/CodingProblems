@@ -1,0 +1,1 @@
+void printAll(int* sud);
