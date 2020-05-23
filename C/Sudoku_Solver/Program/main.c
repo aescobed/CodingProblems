@@ -22,10 +22,14 @@ int main(void)
 	//printAll(sud);
 
 	
-	//C
-	struct node *n = newFullList();
+	//Create 
+	struct node *a;
 	
-	printList(n);
+
+
+	struct node** d = newFullList(a);
+	
+	//printList(a);
 
 	return 0;
 
