@@ -4,6 +4,9 @@
 #include <stdlib.h>
 #include "extensions.h"
 #include "problems.h"
+#include "list.h"
+
+
 
 
 int main(void)
@@ -16,7 +19,13 @@ int main(void)
 	example1(sud);
 
 	//Print the initial problem
-	printAll(sud);
+	//printAll(sud);
+
+	
+	//C
+	struct node *n = newFullList();
+	
+	printList(n);
 
 	return 0;
 
