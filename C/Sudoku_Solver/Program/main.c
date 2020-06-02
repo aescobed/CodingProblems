@@ -33,6 +33,10 @@ int main(void)
 
 	printList(list[0]);
 
+	newSingleList(list, 1, 5);
+
+	printList(list[1]);
+
 
 
 
