@@ -21,6 +21,33 @@ void newFullList(struct node **a)
 }
 
 
+void newFullList2(struct node *n)
+{
+
+
+	struct node *hold = (struct node*)malloc(sizeof(struct node));
+
+	hold = n;
+
+	for(int i = 0; i < 9; i++)
+	{
+
+		struct node *t = (struct node*)malloc(sizeof(struct node));
+		
+		hold->next = t;
+
+		hold->key = i;
+
+		hold = t;
+	
+	}
+
+	hold->key = 9;
+
+
+}
+
+
 //Print the keys to all the elements in the list
 void printList(struct node *n)
 {

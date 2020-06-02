@@ -24,16 +24,14 @@ int main(void)
 
 	
 	//Create 
+
+
 	struct node *n = (struct node*)malloc(sizeof(struct node));
 
-	struct node *b = (struct node*)malloc(sizeof(struct node));
-
-
-	n->key = 1;
-	n->next = b;
-	b->key = 2;
+	newFullList2(n);
 
 	printList(n);
+
 	
 /*
 	printf("%d", n->key);
