@@ -5,6 +5,7 @@
 #include "extensions.h"
 #include "problems.h"
 #include "list.h"
+#include "node.h"
 
 
 
@@ -23,11 +24,36 @@ int main(void)
 
 	
 	//Create 
-	struct node *a;
+	struct node *n = (struct node*)malloc(sizeof(struct node));
+
+	struct node *b = (struct node*)malloc(sizeof(struct node));
+
+
+	n->key = 1;
+	n->next = b;
+	b->key = 2;
+
+	printList(n);
 	
+/*
+	printf("%d", n->key);
+
+	while(n->next != NULL)
+	{
+		
+		n = n -> next;
+		printf(", %d", n->key);
+
+	}
 
 
-	struct node** d = newFullList(a);
+	printf("\n");
+*/	
+
+
+
+	//struct node** d;
+	//newFullList(d);
 	
 	//printList(a);
 

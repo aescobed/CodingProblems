@@ -2,28 +2,22 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
-
-struct node
-{
-	int key;
-	struct node *next;
-};
-
+#include "node.h"
 
 //Pointer to first list of 1 to 9
-struct node** newFullList(struct node *a)
+void newFullList(struct node **a)
 {
 
 	struct node **n = (struct node**)malloc(sizeof(struct node*) * 9);
+
+	
 	n[0]->key = 1;
 	n[0]->next = n[1];
 	n[1]->key = 2;
+	
 
+	a = n;
 
-	a = n[0];
-
-	return n;
 }
 
 
