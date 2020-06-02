@@ -29,13 +29,19 @@ int main(void)
 	//array of pointers - each to a list of all the possible entries in the respective index
 	struct node **list = (struct node**)malloc(sizeof(struct node*) * 81);
 
-	newFullList(list, 0);
+	//Initialize the list of possible entries
+	for(int i = 0; i < 81; i++)
+	{
+		
+		//Create a full list from 1-9 because the entry could be anything at that index
+		if(sud[i] == 0)
+			newFullList(list, i);
+		//Add a single value list to the main list because the entry is already known at that index
+		else
+			newSingleList(list, i, sud[i]);
 
-	printList(list[0]);
 
-	newSingleList(list, 1, 5);
-
-	printList(list[1]);
+	}
 
 
 
