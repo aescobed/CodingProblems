@@ -26,27 +26,13 @@ int main(void)
 	//Create 
 
 
-	struct node *n = (struct node*)malloc(sizeof(struct node));
+	//array of pointers - each to a list of all the possible entries in the respective index
+	struct node **list = (struct node**)malloc(sizeof(struct node*) * 81);
 
-	newFullList2(n);
+	newFullList(list, 0);
 
-	printList(n);
+	printList(list[0]);
 
-	
-/*
-	printf("%d", n->key);
-
-	while(n->next != NULL)
-	{
-		
-		n = n -> next;
-		printf(", %d", n->key);
-
-	}
-
-
-	printf("\n");
-*/	
 
 
 

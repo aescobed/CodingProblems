@@ -4,30 +4,15 @@
 #include <stdlib.h>
 #include "node.h"
 
-//Pointer to first list of 1 to 9
-void newFullList(struct node **a)
+//Pointer to first in list of 1 to 9
+void newFullList(struct node **n, int idx)
 {
 
-	struct node **n = (struct node**)malloc(sizeof(struct node*) * 9);
-
-	
-	n[0]->key = 1;
-	n[0]->next = n[1];
-	n[1]->key = 2;
-	
-
-	a = n;
-
-}
-
-
-void newFullList2(struct node *n)
-{
-
+	n[idx] = (struct node*)malloc(sizeof(struct node));
 
 	struct node *hold = (struct node*)malloc(sizeof(struct node));
 
-	hold = n;
+	hold = n[idx];
 
 	for(int i = 0; i < 9; i++)
 	{
@@ -43,7 +28,6 @@ void newFullList2(struct node *n)
 	}
 
 	hold->key = 9;
-
 
 }
 
