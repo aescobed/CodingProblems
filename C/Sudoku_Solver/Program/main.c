@@ -20,7 +20,7 @@ int main(void)
 	example1(sud);
 
 	//Print the initial problem
-	//printAll(sud);
+	printAll(sud);
 
 	
 	//Create 
@@ -43,7 +43,13 @@ int main(void)
 
 	}
 
+	printList(list[1]);
 
+	removeValue(list, 1, 1);
+	removeValue(list, 1, 4);
+	removeValue(list, 1, 9);
+
+	printList(list[1]);
 
 
 	//struct node** d;

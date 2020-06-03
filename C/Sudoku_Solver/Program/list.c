@@ -39,6 +39,45 @@ void newSingleList(struct node **n, int idx, int value)
 	n[idx]->key = value;
 
 }
+
+
+//Removes the specified value from the list at the given index
+void removeValue(struct node **n, int idx, int value)
+{
+
+	struct node *hold = n[idx];
+
+	if(hold->key == value)
+	{
+		
+		n[idx] = hold->next;
+		free(hold);
+	}
+	else
+	
+	//Scan throught the list
+	while(hold->next != NULL)
+	{
+
+		//If the value is found within the list
+		if(hold->next->key == value)
+		{
+			//Hold the node to be freed
+			struct node *hold2 = hold->next;
+			
+			//Skip over the node to be deleted
+			hold->next = hold->next->next;
+
+			free(hold2);
+			return;
+
+		}
+
+		hold = hold->next;
+
+	}
+
+}
  
 
 
