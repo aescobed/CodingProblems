@@ -45,7 +45,7 @@ void newSingleList(struct node **n, int idx, int value)
 void removeValue(struct node **n, int idx, int value)
 {
 
-	//If there is only one item in the list
+	//If there is only one item in the list - don't do anything
 	if(n[idx]->next == NULL)
 		return;
 

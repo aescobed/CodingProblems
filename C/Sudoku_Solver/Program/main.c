@@ -59,15 +59,17 @@ int main(void)
 
 
 
-	int j = 1;
+	int j = 31;
 
 	int x = j%9;
 	int y = j/9;
 
 	printList(list[j]);
 
-printf("(%d, %d)", x, y);
 
+printf("(%d, %d)", x, y);
+	
+	//Iterate through horizontal
 	for(int i=0; i < 9; i++)
 	{
 		
@@ -87,20 +89,51 @@ printList(list[j]);
 
 printf("\n(%d, %d)", x, y);
 
+	//Iterate through vertical
 	for(int i=0; i < 9; i++)
 	{
 		
-
 		if(sud[(i*9) + x] != 0)
 		{
 			printf("%d", sud[(i*9) + x]);
 			removeValue(list, j, sud[(i*9) + x]);
 		}
+
 	}
+printf("\n");
+printList(list[j]);
+printf("\n(%d, %d)", x, y);
+
+
+
+
+	//Y quadrant
+	int YQ = y/3;
+	
+	//X quadrant;
+	int XQ = x/3;
+
+	for(int jump=0; jump<3; jump++)
+		for(int i=0; i < 3; i++)
+		{
+
+			if(sud[XQ*3 + YQ*27 + i + jump*9] != 0)
+			{
+
+				printf("%d", sud[XQ*3 + YQ*27 + i + jump*9]);
+				removeValue(list, j, sud[XQ*3 + YQ*27 + i + jump*9]);
+			}
+
+		}
 
 printf("\n");
 
-	printList(list[j]);
+printList(list[j]);
+
+
+
+
+
 
 
 
