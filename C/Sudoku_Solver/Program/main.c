@@ -40,22 +40,69 @@ int main(void)
 		else
 			newSingleList(list, i, sud[i]);
 
-
 	}
 
-	printList(list[1]);
+/*
 
-	removeValue(list, 1, 1);
-	removeValue(list, 1, 4);
-	removeValue(list, 1, 9);
+	printList(list[10]);
 
-	printList(list[1]);
+	removeValue(list, 10, 6);
+	removeValue(list, 10, 4);
+	removeValue(list, 10, 9);
+	removeValue(list, 10, 9);
+	removeValue(list, 10, 1);
+	removeValue(list, 10, 4);
+
+	printList(list[10]);
+
+*/
 
 
-	//struct node** d;
-	//newFullList(d);
-	
-	//printList(a);
+
+	int j = 1;
+
+	int x = j%9;
+	int y = j/9;
+
+	printList(list[j]);
+
+printf("(%d, %d)", x, y);
+
+	for(int i=0; i < 9; i++)
+	{
+		
+
+		if(sud[(y*9) + i] != 0)
+		{
+
+			printf("%d", sud[(y*9) + i]);
+			removeValue(list, j, sud[(y*9) + i]);
+
+		}
+		
+	}
+printf("\n");
+printList(list[j]);
+
+
+printf("\n(%d, %d)", x, y);
+
+	for(int i=0; i < 9; i++)
+	{
+		
+
+		if(sud[(i*9) + x] != 0)
+		{
+			printf("%d", sud[(i*9) + x]);
+			removeValue(list, j, sud[(i*9) + x]);
+		}
+	}
+
+printf("\n");
+
+	printList(list[j]);
+
+
 
 	return 0;
 

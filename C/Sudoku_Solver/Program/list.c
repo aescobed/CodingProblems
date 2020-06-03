@@ -45,8 +45,14 @@ void newSingleList(struct node **n, int idx, int value)
 void removeValue(struct node **n, int idx, int value)
 {
 
+	//If there is only one item in the list
+	if(n[idx]->next == NULL)
+		return;
+
+
 	struct node *hold = n[idx];
 
+	//If the first node is the key
 	if(hold->key == value)
 	{
 		
