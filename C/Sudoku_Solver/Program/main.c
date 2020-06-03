@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "extensions.h"
 #include "problems.h"
 #include "list.h"
@@ -19,12 +20,11 @@ int main(void)
 	//Initialize problem
 	example1(sud);
 
+
+	printf("initial problem\n");
+
 	//Print the initial problem
 	printAll(sud);
-
-	
-	//Create 
-
 
 	//array of pointers - each to a list of all the possible entries in the respective index
 	struct node **list = (struct node**)malloc(sizeof(struct node*) * 81);
@@ -42,99 +42,104 @@ int main(void)
 
 	}
 
-/*
+	bool solved = false;
+	int pass = 1;
 
-	printList(list[10]);
-
-	removeValue(list, 10, 6);
-	removeValue(list, 10, 4);
-	removeValue(list, 10, 9);
-	removeValue(list, 10, 9);
-	removeValue(list, 10, 1);
-	removeValue(list, 10, 4);
-
-	printList(list[10]);
-
-*/
-
-
-
-	int j = 31;
-
-	int x = j%9;
-	int y = j/9;
-
-	printList(list[j]);
-
-
-printf("(%d, %d)", x, y);
-	
-	//Iterate through horizontal
-	for(int i=0; i < 9; i++)
+	while(!solved)
 	{
-		
 
-		if(sud[(y*9) + i] != 0)
+		for(int j = 0; j < 81; j++)
 		{
 
-			printf("%d", sud[(y*9) + i]);
-			removeValue(list, j, sud[(y*9) + i]);
+		//If we have already found the solution for this entry - go on to the next one
+		if(sud[j] != 0)
+			continue;
 
-		}
+		int x = j%9;
+		int y = j/9;
+
 		
-	}
-printf("\n");
-printList(list[j]);
-
-
-printf("\n(%d, %d)", x, y);
-
-	//Iterate through vertical
-	for(int i=0; i < 9; i++)
-	{
-		
-		if(sud[(i*9) + x] != 0)
+		//Iterate through horizontal
+		for(int i=0; i < 9; i++)
 		{
-			printf("%d", sud[(i*9) + x]);
-			removeValue(list, j, sud[(i*9) + x]);
-		}
-
-	}
-printf("\n");
-printList(list[j]);
-printf("\n(%d, %d)", x, y);
+			
+			if(sud[(y*9) + i] != 0)
+				removeValue(list, j, sud[(y*9) + i]);
 
 
-
-
-	//Y quadrant
-	int YQ = y/3;
-	
-	//X quadrant;
-	int XQ = x/3;
-
-	for(int jump=0; jump<3; jump++)
-		for(int i=0; i < 3; i++)
-		{
-
-			if(sud[XQ*3 + YQ*27 + i + jump*9] != 0)
+			//If we have found the solution to the entry (last possible option) - update the sud matrix
+			if(list[j]->next == NULL)
 			{
+				
+				sud[j] = list[j]->key;
+				continue;
 
-				printf("%d", sud[XQ*3 + YQ*27 + i + jump*9]);
-				removeValue(list, j, sud[XQ*3 + YQ*27 + i + jump*9]);
+			}
+			
+		}
+
+		//Iterate through vertical
+		for(int i=0; i < 9; i++)
+		{
+			
+			if(sud[(i*9) + x] != 0)
+				removeValue(list, j, sud[(i*9) + x]);
+
+
+			//If we have found the solution to the entry (last possible option) - update the sud matrix
+			if(list[j]->next == NULL)
+			{
+				
+				sud[j] = list[j]->key;
+				continue;
+
 			}
 
 		}
 
-printf("\n");
+		//Y quadrant
+		int YQ = y/3;
+		
+		//X quadrant;
+		int XQ = x/3;
 
-printList(list[j]);
+		for(int jump=0; jump<3; jump++)
+			for(int i=0; i < 3; i++)
+			{
+
+				if(sud[XQ*3 + YQ*27 + i + jump*9] != 0)
+					removeValue(list, j, sud[XQ*3 + YQ*27 + i + jump*9]);
 
 
+				//If we have found the solution to the entry (last possible option) - update the sud matrix
+				if(list[j]->next == NULL)
+				{
+					
+					sud[j] = list[j]->key;
+					continue;
+
+				}
+
+			}
+
+		}
 
 
+	printf("pass %d\n", pass);
+	printAll(sud);
+	pass++;
 
+	//Scan through all the entries to see if they have all been filled in
+	for(int iter = 0; iter < 81; iter++)
+		if(sud[iter] == 0)
+		{
+			solved = false;
+			break;
+		}
+		else
+			solved = true;
 
+	}
 
 
 	return 0;
