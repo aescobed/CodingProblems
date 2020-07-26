@@ -11,39 +11,11 @@ namespace ZigZagConversionProject
 
             string input = "PAYPALISHIRING";
 
-            Console.WriteLine(convertSimple(input, 4));
+            Console.WriteLine(convert(input, 5));
         
         }
 
         private static string convert(string s, int numRows)
-        {
-
-            char[] res = new char[s.Length];
-            char[] inp = s.ToCharArray();
-
-            double index = 0;
-            double length = Convert.ToDouble(s.Length);
-            double diagonals = Math.Max(0, numRows - 2);
-            double pattern = Math.Max(0, numRows - 2) + numRows;
-            double repeats = Math.Ceiling(length / pattern);
-
-            int empties = 0;
-            
-            for(int i = 0; i < res.Length + empties; i++)
-            {
-
-                index = (i / pattern); 
-
-
-            }
-
-            res[8] = 'k';
-
-            return new string(res);
-
-        }
-
-        private static string convertSimple(string s, int numRows)
         {
 
             int length = s.Length;
@@ -56,7 +28,7 @@ namespace ZigZagConversionProject
             Console.WriteLine($"repeats = {repeats}");
             Console.WriteLine($"patternWidth = {patternWidth}");
 
-            string[,] res = new string[Convert.ToInt32(repeats) * Convert.ToInt32(patternWidth), numRows];
+            string[,] res = new string[repeats * patternWidth, numRows];
             char[] inp = s.ToCharArray();
 
             int x;
@@ -70,13 +42,13 @@ namespace ZigZagConversionProject
                     x = (i / patternSize) * patternWidth;                    
                     y = (i % patternSize % numRows);
                     
-                    res[Convert.ToInt32(x), Convert.ToInt32(y)] = inp[i].ToString();
+                    res[x, y] = inp[i].ToString();
                 }
                 
                 else
                 {
                     x = ((i%patternSize)-numRows+1) + i/patternSize*patternWidth;
-                    y = numRows - (i % patternSize) + 2;
+                    y = numRows - ((i % patternSize) - numRows) - 2;
                     Console.WriteLine($"letter {i}: {x},{y}");
                     res[x, y] = inp[i].ToString();
                 }
